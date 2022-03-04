@@ -1,4 +1,5 @@
 # Notes (Lists and Tuples)
+Video Lesson: https://drive.google.com/file/d/1kXzxP-pwKiU3PM957kmq3eeyDSpzrgND/view
 
 A list is a single *mutable* variable that holds more than one piece of information.  Up until this point, each variable that you created held a unique **single** piece of information.
 
