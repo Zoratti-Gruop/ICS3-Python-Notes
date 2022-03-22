@@ -12,9 +12,14 @@ f = open("fruit.txt", "r") # Open the file
 fileList = f.readlines()         # Read the file into a list
 f.close()                  # Close the file
 
-print(fileList)
+print(fileList)'
 
 # #If you want to get rid of the /n values
+# for line in fileList:
+#     print(line.strip())
+
+
+# #If you want to get rid of the /n values (Another way to loop)
 # for i in range(0, len(fileList)):
 #     fileList[i] = fileList[i].strip()
 #     

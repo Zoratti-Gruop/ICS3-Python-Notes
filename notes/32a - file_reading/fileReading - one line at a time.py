@@ -7,13 +7,13 @@
 # Created:     21-Oct-2021
 # Updated:     21-Oct-2021
 #-----------------------------------------------------------------------------
-mynewhandle = open("fruit.txt", "r")   # Open the file
+file = open("fruit.txt", "r")   # Open the file
 while True:                            # Keep reading forever
-    theline = mynewhandle.readline()   # Try to read next line
-    if len(theline) == 0:              # If there are no more lines
+    theLine = file.readline()   # Try to read next line
+    if len(theLine) == 0:              # If there are no more lines
         break                          # Leave the loop
 
     # Now process the line we've just read
-    print(theline, end="")
+    print(theLine, end="")
 
-mynewhandle.close() #Close the file for another program can use it
+file.close() #Close the file for another program can use it
