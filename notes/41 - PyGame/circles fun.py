@@ -1,3 +1,10 @@
+#Practice
+
+#1. Make the circle go up.
+#2. Make the circles move faster when you click the mouse button (Events)
+#3. Control the circles with a keyboard command
+#4. Challenge - Make the circles wrap around the screen (or bounce off the screen)
+
 import pygame
 
 def main():
@@ -34,7 +41,7 @@ def main():
         #Move the circle
         #circlePos[0] = circlePos[0] +1
         circlePos[0] += 1
-        circlePos2[0] += 1
+        circlePos2[0] -= 1
         
         # Draw a circle on the surface
         pygame.draw.circle(mainSurface, circleColor, circlePos, circleSize)
