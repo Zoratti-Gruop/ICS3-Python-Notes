@@ -1,3 +1,4 @@
+'''See PyGame Events documentation for a list of the events built into pygame: https://www.pygame.org/docs/ref/event.html '''
 import pygame
 
 def main():
