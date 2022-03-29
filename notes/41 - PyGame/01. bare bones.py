@@ -8,7 +8,6 @@ def main():
     
     clock = pygame.time.Clock()  #Force frame rate to be slower
 
-
     # Create surface of (width, height), and its window.
     mainSurface = pygame.display.set_mode((surfaceSize, surfaceSize))
 
@@ -17,16 +16,15 @@ def main():
     circleColor = (255, 0, 0)        # A color is a mix of (Red, Green, Blue)
 
 
-    #-----------------------------Main Game Loop---------------------------------------------#
-    while True:
-        
+    #-----------------------------Main Program Loop---------------------------------------------#
+    while True:       
         #-----------------------------Event Handling-----------------------------------------#
         ev = pygame.event.poll()    # Look for any event
         if ev.type == pygame.QUIT:  # Window close button clicked?
             break                   #   ... leave game loop
 
 
-        #-----------------------------Game Logic---------------------------------------------#
+        #-----------------------------Program Logic---------------------------------------------#
         # Update your game objects and data structures here...
 
 

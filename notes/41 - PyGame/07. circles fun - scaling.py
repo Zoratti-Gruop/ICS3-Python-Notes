@@ -27,7 +27,7 @@ def main():
     circlePosList = []
     circleSizeList = []
     circleColorList = []
-    numCircles = 50000
+    numCircles = 500
     
     for count in range(numCircles):
         circlePosList.append( [random.randint(0,480),random.randint(0,480)] )
