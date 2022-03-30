@@ -6,35 +6,31 @@ Collision detection can be accomplished using code that ranges from simple `if` 
 
 ## Edge Collision Detection
 
-Remember this program from the animation tutorial, which displays a ball bouncing around the screen:
-
-```java
-float x = 150;
-float y = 100;
-float xSpeed = 5;
-float ySpeed = 4;
-
-void setup() {
-  size(300, 300);
-}
-
-void draw() {
-  background(64);
-  ellipse(x, y, 25, 25);
-
-  x += xSpeed;
-  y += ySpeed;
-
-  if (x < 0 || x > width) {
-    xSpeed *= -1;
-  }
-
-  if (y < 0  || y > height) {
-    ySpeed *= -1;
-  }
-}
+Remember this program from the animation tutorial, which displays a ball bouncing around the screen?  We first initialized a circle with the following values:
+```python
+# Create the the size, position, speed and color for a circle
+circlePos  = [200,200]  #[x,y] position
+circleSize = 30         #Radius of the circle
+circleColor = (255,0,0) #Color of the circle
+circleSpeed = [1,2.5]   #Speed in the x and y directions
 ```
 
+We can then animate the ball and make it bounce with the following code:
+```python
+circlePos[0] += circleSpeed[0]
+circlePos[1] += circleSpeed[1]
+
+if circlePos[0] >= surfaceSize:  #Right Side
+    circleSpeed[0] = circleSpeed[0]*-1
+elif circlePos[0] <= 0:          #Left Side
+    circleSpeed[0] = circleSpeed[0]*-1
+
+if circlePos[1] >= surfaceSize:  #Top Side
+    circleSpeed[1] = circleSpeed[1]*-1
+elif circlePos[1] <= 0:          #Bottom Side
+    circleSpeed[1] = circleSpeed[1]*-1
+
+```
 This code creates variables that store the position and speed of the ball. It uses those variables to draw the ball, and then it adjusts the position of the ball by its speed. Finally, it checks whether the ball has gone off the left or right sides of the window, and if so it reverses the `xSpeed` of the ball. Similarly, it then checks whether the ball has gone off the top or bottom of the window, and if so it reverses the `ySpeed` of the ball. In other words, it detects whether the ball has collided with the edges of the screen, and if so it tells the ball to bounce off the edge it collided with!
 
 This might seem simplistic, but this is a basic form of collision detection: the **state** of an object (in this case, the ball's position and speed) is stored in a set of variables, those variables are used to check whether the object collides with another (in this case, the edges of the screen), and if so, some action is taken (the speed variables are reversed to cause the ball to bounce). Bouncing the ball is just an example, but you can do anything you want. You could teleport the ball to the other side of the window so it wraps (like Pac-Man), or you could move to the next screen (like Zelda), or you could end the game (like Pong).

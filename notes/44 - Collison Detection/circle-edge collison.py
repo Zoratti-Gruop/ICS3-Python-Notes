@@ -12,11 +12,11 @@ def main():
     # Create surface of (width, height), and its window.
     mainSurface = pygame.display.set_mode((surfaceSize, surfaceSize))
 
-    # Create the the size, position and color for a circle
-    circlePos  = [200,200] #[x,y]
-    circleSize = 30
-    circleColor = (255,0,0)
-    circleSpeed = 1;
+    # Create the the size, position, speed and color for a circle
+    circlePos  = [200,200]  #[x,y] position
+    circleSize = 30         #Radius of the circle
+    circleColor = (255,0,0) #Color of the circle
+    circleSpeed = [1,2.5]   #Speed in the x and y directions
     
 
     
@@ -28,12 +28,18 @@ def main():
            
         # Update your game objects and data structures here...
            
-        circlePos[0] += circleSpeed
+        circlePos[0] += circleSpeed[0]
+        circlePos[1] += circleSpeed[1]
         
-        if circlePos[0] >= surfaceSize:
-            circleSpeed = circleSpeed*-1
-        elif circlePos[0] <= 0:
-            circleSpeed = circleSpeed*-1
+        if circlePos[0] >= surfaceSize:  #Right Side
+            circleSpeed[0] = circleSpeed[0]*-1
+        elif circlePos[0] <= 0:          #Left Side
+            circleSpeed[0] = circleSpeed[0]*-1
+        
+        if circlePos[1] >= surfaceSize:  #Top Side
+            circleSpeed[1] = circleSpeed[1]*-1
+        elif circlePos[1] <= 0:          #Bottom Side
+            circleSpeed[1] = circleSpeed[1]*-1
         
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color
