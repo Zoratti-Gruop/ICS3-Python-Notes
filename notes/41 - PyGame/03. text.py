@@ -1,7 +1,7 @@
 
 import pygame
 
-def main:
+def main():
     #-----------------------------Setup------------------------------------------------------#
     """ Set up the game and run the main game loop """
     pygame.init()      # Prepare the pygame module for use
