@@ -8,10 +8,10 @@ def distFromPoints(point1, point2):
     
     Parameters
     ----------
-    point1 : float
-        The first point to compare
-    point2 : float
-        The second point to compare
+    point1 : (float, float)
+        The first point to compare in the form (x,y)
+    point2 : (float, float)
+        The second point to compare in the form (x,y)
         
     Returns
     float

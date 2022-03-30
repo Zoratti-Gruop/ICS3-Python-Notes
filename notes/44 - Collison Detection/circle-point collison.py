@@ -46,10 +46,10 @@ def main():
         
            
         # Update your game objects and data structures here...
-        mouseCirclePos = pygame.mouse.get_pos()
+        mousePos = pygame.mouse.get_pos()
         
         
-        if distFromPoints(circlePos,mouseCirclePos) < (circleSize):  #A collision happens!
+        if distFromPoints(circlePos,mousePos) < (circleSize):  #A collision happens!
             circleColor = (100,0,0)
         else:                                                        #no collision happened
             circleColor = (255,0,0)  

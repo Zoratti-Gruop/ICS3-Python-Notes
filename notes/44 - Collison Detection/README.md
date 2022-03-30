@@ -63,32 +63,43 @@ Because the distance between the center of the circle and the point is greater t
 
 Because the distance between the center of the circle and the point is less than the radius of the circle. Try drawing out a few of your own examples to prove it to yourself!
 
-Putting this into code, we can use the `dist()` function to find the distance between two points. So if our program contains a circle and a point, we can use the `dist()` function and compare it to the radius of the circle to detect whether the point collides with the circle:
+To calculate this distance between two points we can create a function `distFromPoints()`:
 
-```java
-float circleCenterX;
-float circleCenterY;
-float circleRadius;
+```python
+def distFromPoints(point1, point2):
+    '''
+    This function calculationes the distance between two points given by a set of tuples (x1,y1) and (x2,y2)
+    
+    Parameters
+    ----------
+    point1 : (float, float)
+        The first point to compare in the form (x,y)
+    point2 : (float, float)
+        The second point to compare in the form (x,y)
+        
+    Returns
+    float
+        The distance between the two points
+    '''
+    distance = math.sqrt( ((point2[0]-point1[0])**2)+((point2[1]-point1[1])**2) )
+    
+    return distance
+```
 
-void setup() {
-  size(300, 300);
-  circleCenterX = width/2;
-  circleCenterY = height/2;
-  circleRadius = 100;
-}
 
-void draw() {
-  background(0);
 
-  if(dist(mouseX, mouseY, circleCenterX, circleCenterY) < circleRadius){
-    fill(255, 0, 0);    
-  }
-  else{
-   fill(0, 255, 0);
-  }
+Putting this into code, we can use the `distFromPoints()` function to find the distance between two points. So if our program contains a circle and a point, we can use the `distFromPoints()` function and compare it to the radius of the circle to detect whether the point collides with the circle:
 
-  ellipse(circleCenterX, circleCenterY, circleRadius*2, circleRadius*2);
-}
+```python
+mousePos = pygame.mouse.get_pos()
+
+if distFromPoints(circlePos,mousePos) < (circleSize):
+    #A collision happens!
+    circleColor = (100,0,0)
+else:
+    #no collision happened
+    circleColor = (255,0,0)
+
 ```
 
 This code stores the position (center) of the circle and its radius in variables. It then uses the `dist()` function to check whether the mouse is inside the circle: if the distance is less than the radius of the circle, then we know that the mouse is inside the circle. If the mouse is inside, it sets the color to red, and if not, it sets the color to green. Finally, the code draws the circle. In other words, this program shows a green circle that turns red when the mouse is inside it.
@@ -109,42 +120,22 @@ Notice that the distance between their centers (200) is greater than the sum of 
 
 In this case, the distance between their centers (150) is less than the sum of their radiuses (175), so we know these circles are colliding. Again, the best thing you can do is draw a bunch of examples yourself to see the pattern.
 
-Putting this into code, we still use the `dist()` function to get the distance between the points, but now we compare it to the sum of the radiuses:
+Putting this into code, we still use the `distFromPoints()` function to get the distance between the points, but now we compare it to the sum of the radiuses:
 
-```java
-float bigCircleRadius = 50;
-float smallCircleRadius = 25;
+```python
+if distFromPoints(circlePos,mouseCirclePos) < (circleSize + mouseCircleSize):
+    #A collision happens!
+    circleColor = (100,0,0)
+else:
+    #no collision happened
+    circleColor = (255,0,0)
 
-void setup() {
-  size(300, 300);
-}
-
-void draw() {
-  background(64);
-
-  //draw the big circle
-  noFill();
-  stroke(255);
-  ellipse(width/2, height/2, bigCircleRadius*2, bigCircleRadius*2);
-
-  //change color if circles are colliding
-  if(dist(mouseX, mouseY, width/2, height/2) < bigCircleRadius + smallCircleRadius){
-    fill(255, 0, 0);    
-  }
-  else{
-   fill(0, 255, 0);
-  }
-
-  //draw the small circle
-  ellipse(mouseX, mouseY, smallCircleRadius*2, smallCircleRadius*2);
-
-}
 ```
 
 This code is very similar to the point-circle collision code, except for this line:
 
-```java
-if(dist(mouseX, mouseY, width/2, height/2) < bigCircleRadius + smallCircleRadius){
+```python
+if distFromPoints(circlePos,mouseCirclePos) < (circleSize + mouseCircleSize):
 ```
 
 This line checks whether the distance between centers of the circles (which are located at the cursor position and the center of the window) is less than the sum of the radiuses of the circle. If this is true, then we've detected a collision between the two circles.
