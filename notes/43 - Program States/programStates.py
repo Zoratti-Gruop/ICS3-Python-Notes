@@ -1,20 +1,10 @@
 '''Program States allow you to control which section of your code is running through use of a state varaible'''
 '''See a video explanation of this program here: https://drive.google.com/file/d/1GenlIgMC_mtQrsbsDHSdUKGkgHztPZHF/view?usp=sharing
+'''
 import pygame
 import random
     
     
-def start(ev, mainSurface):
-    '''This function is the start screen of our demo program'''
-    #Check for events for the start screen
-    if ev.type == pygame.MOUSEBUTTONUP:
-        programState = "initialize"
-            
-    #Do the logic for the start screen
-                
-    #Draw the stuff for the start screen
-    mainSurface.fill((0, 200, 255))
-
 def main():
     """ Set up the game and run the main game loop """
     pygame.init()      # Prepare the pygame module for use
@@ -36,7 +26,14 @@ def main():
             break                   #   ... leave game loop
 
         if programState == "start":
-            start(ev, mainSurface)
+                #Check for events for the start screen
+                if ev.type == pygame.MOUSEBUTTONUP:
+                    programState = "initialize"
+                        
+                #Do the logic for the start screen
+                            
+                #Draw the stuff for the start screen
+                mainSurface.fill((0, 200, 255))
             
         
         elif programState == "initialize": #Sometimes it's useful to separate out initialization code into a programState
