@@ -50,7 +50,7 @@ def main():
 #         else:
 #             #no collision happened
 #             rectangleColor = (255,0,0)
-
+# 
         #Version 2 - Using built in Rect object for collision
         mouseRect = pygame.Rect(mouseRectangleDimensions)
         rectangleRect = pygame.Rect( rectangleDimensions)
