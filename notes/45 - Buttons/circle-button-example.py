@@ -42,16 +42,17 @@ def main():
     buttonOn = False  #Default to off
     
     while True:
+        mousePos = pygame.mouse.get_pos()
+
         ev = pygame.event.poll()    # Look for any event
         if ev.type == pygame.QUIT:  # Window close button clicked?
             break                   #   ... leave game loop
         if ev.type == pygame.MOUSEBUTTONUP:
-            if distFromPoints(circlePos,mouseCirclePos) < (circleSize):
+            if distFromPoints(circlePos,mousePos) < (circleSize):
                 buttonOn = not buttonOn
                 
                 
         # Update your game objects and data structures here...
-        mouseCirclePos = pygame.mouse.get_pos()
             
         if buttonOn:
             circleColor = (100,0,0)
