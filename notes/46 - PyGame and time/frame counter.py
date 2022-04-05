@@ -72,8 +72,9 @@ def main():
 
         #EXAMPLE CODE - Increment the frame counter for every game loop
         frameCount += 1
+        print(frameCount)
         
-        if frameCount == 60:  #ie.  Once every second since 60 fps
+        if frameCount >= 60:  #ie.  Once every second since 60 fps
             circles.append(Ball([0,random.randrange(surfaceSize)], 30, (0, 0, 0)) )
             frameCount = 0    #add a new ball ^^ and reset the frame count
 
