@@ -83,7 +83,7 @@ def main():
             break                   #   ... leave game loop
 
         # Update your game objects and data structures here...
-        pygame.time.wait(1000)
+        pygame.time.wait(10000)
         circles.append(Ball([random.randrange(surfaceSize),random.randrange(surfaceSize)], 30, (0, 0, 0)) )
 
         
