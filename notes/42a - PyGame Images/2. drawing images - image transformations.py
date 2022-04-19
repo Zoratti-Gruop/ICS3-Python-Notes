@@ -21,14 +21,19 @@ def main():
     doubledWizardImage = pygame.transform.scale2x(wizardImage)
 
     scale = 2;
+    #Increases the image size by a factor
     scaledWizardImage = pygame.transform.scale(wizardImage, (scale*wizardImage.get_width(), scale*wizardImage.get_height() ))
     
+    #Increases the image size by a factor - smooths image after
     smoothScaledWizardImage = pygame.transform.smoothscale(wizardImage, (scale*wizardImage.get_width(), scale*wizardImage.get_height() ))
     
+    #This helps if the image looks really bad after scaling
     alphaWizardImage = pygame.transform.smoothscale(wizardImage.convert_alpha(), (scale*wizardImage.get_width(), scale*wizardImage.get_height() ))
  
+    #Flips the image
     flippedImage = pygame.transform.flip(doubledWizardImage, True, False)
     
+    #Rotates the image
     rotateImage = pygame.transform.rotate(doubledWizardImage, 45)
 #     pygame.Surface.fill(rotateImage, (255,0,0))
 
@@ -52,7 +57,10 @@ def main():
         mainSurface.fill((0, 200, 255))
         
         #Draw the wizards
+        
+        
         mainSurface.blit(doubledWizardImage, wizardPos  )
+        mainSurface.blit(wizardImage, wizardPos  )
 
         mainSurface.blit(scaledWizardImage, (wizardPos[0]+50,wizardPos[1]))
 
