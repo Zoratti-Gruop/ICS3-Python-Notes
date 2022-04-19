@@ -30,9 +30,9 @@ def main():
 
 
         #Move the Dino
-        wizardPos[0] += 0.5   #update the x for the lizard
-        lizardPos[0] += 0.5   #update the x for the wizard
-        
+#         wizardPos[0] += 0.5   #update the x for the lizard
+#         lizardPos[0] += 0.5   #update the x for the wizard
+#         
         #Draw the whole sheet
         #mainSurface.blit(spriteSheet, lizardPos)
         

@@ -83,4 +83,3 @@ def main():
     pygame.quit()     # Once we leave the loop, close the window.
 
 main()
-

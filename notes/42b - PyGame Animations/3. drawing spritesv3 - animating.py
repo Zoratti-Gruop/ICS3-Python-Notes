@@ -22,9 +22,7 @@ def main():
     lizardRect = [128,236,16,28]
     lizardPatchNumber = 0        #Start at the initial patch
     lizardNumPatches = 4         #Only use 4 patches
-    #lizardFrameCount = 0         #Start at intial frame
-    #animationFrameRate = 10
-    
+
     
     
     while True:
@@ -40,16 +38,15 @@ def main():
 
 
         #Move the Dino
-        wizardPos[0] += 0.5   #update the x for the lizard
-        lizardPos[0] += 0.5   #update the x for the wizard
-        
+#         wizardPos[0] += 0.5   #update the x for the lizard
+#         lizardPos[0] += 0.5   #update the x for the wizard
+#         
         if (lizardPatchNumber < lizardNumPatches-1) :
             lizardPatchNumber += 1
             lizardRect[0] += lizardRect[2]  #Shift the "display window" to the right along the sprite sheet by the width of the image
         else:
             lizardPatchNumber = 0           #Reset back to first patch
             lizardRect[0] -= lizardRect[2]*(lizardNumPatches-1)  #Reset the rect position of the rect back too
-            #self.imageRect = copy.copy(self.origImageRect)
         
         print(f"Patch Number: {lizardPatchNumber}   Image Rect: {lizardRect}  ")
         
