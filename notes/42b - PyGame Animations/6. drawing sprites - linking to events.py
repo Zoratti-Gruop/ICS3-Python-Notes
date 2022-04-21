@@ -46,7 +46,7 @@ def main():
         mainSurface.fill((0, 200, 255))
 
         #Game logic for the lizard
-        if (lizardMove):  #Check if the lizard should move
+        if (lizardMove == True):  #Check if the lizard should move
             #Move the Dino
             lizardPos[0] += 0.5   #update the x for the lizard
             
