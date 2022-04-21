@@ -33,7 +33,7 @@ def main():
     lizardDirection = 'Right'     #Control which direction lizard is facing
     lizardSpeed = 0.5
     
-    lizardMove = True            #Control whether the lizard can move
+    lizardMove = False            #Control whether the lizard can move
     
     while True:
         
