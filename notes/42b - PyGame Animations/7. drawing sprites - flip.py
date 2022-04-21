@@ -42,17 +42,15 @@ def main():
         ev = pygame.event.poll()    # Look for any event
         if ev.type == pygame.QUIT:  # Window close button clicked?
             break                   #   ... leave game loop
-        elif ev.type == pygame.MOUSEBUTTONDOWN:
-            lizardMove = True
-        elif ev.type == pygame.MOUSEBUTTONUP:
+        elif ev.type == pygame.KEYDOWN:          #Add some key handling to make space change lizard's direction
+            if ev.key == pygame.K_a:
+                lizardDirection = 'Left'
+                lizardMove = True
+            elif ev.key == pygame.K_d:
+                lizardDirection = 'Right'
+                lizardMove = True
+        elif ev.type == pygame.KEYUP:
             lizardMove = False
-        elif ev.type == pygame.KEYUP:          #Add some key handling to make space change lizard's direction
-            if ev.key == pygame.K_SPACE:
-                if lizardDirection == 'Right':
-                    lizardDirection = 'Left'
-                else:
-                    lizardDirection = 'Right'
-
 
 
  
@@ -98,10 +96,10 @@ def main():
         #Draw the image of the lizard sprite using the rect
         #mainSurface.blit(spriteSheet, lizardPos, lizardRect)  #Positions found using msPaint
         tempSurface = pygame.Surface( (lizardRect[2], lizardRect[3]) ) #Make a temp Surface using the width and height of the rect
-        tempSurface.fill((1,1,1))
-        tempSurface.set_colorkey((1,1,1))                                      #Set the color black to be transparent
+        tempSurface.fill((1,255,1))
+        tempSurface.set_colorkey((1,255,1))                                      #Set the color black to be transparent
         tempSurface.blit(spriteSheet, (0,0),  lizardRect)                      #Copy the lizard image to the temp surface
-        
+#         
         if lizardDirection == 'Left':
             tempSurface = pygame.transform.flip(tempSurface,True,False)
         
