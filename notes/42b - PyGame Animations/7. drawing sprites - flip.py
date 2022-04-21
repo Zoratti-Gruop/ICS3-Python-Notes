@@ -29,7 +29,7 @@ def main():
     lizardPatchNumber = 0         #Start at the initial patch
     lizardNumPatches = 5          #Only use 4 patches
     lizardFrameCount = 0          #Start at intial frame
-    lizardFrameRate = 10;         #How often to re-draw the lizard
+    lizardFrameRate = 10         #How often to re-draw the lizard
     lizardDirection = 'Right'     #Control which direction lizard is facing
     lizardSpeed = 0.5
     
