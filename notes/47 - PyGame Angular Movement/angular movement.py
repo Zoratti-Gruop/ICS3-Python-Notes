@@ -1,57 +1,7 @@
 import pygame
 import random
 import math
-
-class Ball():
-    
-    def __init__(self, posIn, sizeIn, colorIn):
-        self.pos = posIn
-        self.size = sizeIn
-        self.color = colorIn
-        self.xDirection = 0
-        self.yDirection = 0
-        self.speed = 1
-        
-        
-    def draw(self, surfaceIn):
-        pygame.draw.circle(surfaceIn, self.color, self.pos, self.size)
-        
-    def move(self):
-        self.pos[0] += self.speed * self.xDirection
-        self.pos[1] += self.speed * self.yDirection
-        
-    def update(self):
-        self.move()
-        
-    def setSpeed(self, speedIn=0):
-        self.speed = speedIn
-    
-    def setDirection(self, angleDegIn):  #angle in is in degrees
-        #Convert degrees to rad
-        angleRad = math.radians(angleDegIn)
-        self.xDirection = math.cos(angleRad)
-        self.yDirection = -math.sin(angleRad)
-        
-    def setDirectionToPoint(self, pointIn): #Expecting Tuple with x and y
-        #Find the angle to the point
-        deltaX = pointIn[0] - self.pos[0]
-        deltaY = self.pos[1] - pointIn[1]
-        thetaRad = math.atan2(deltaY,deltaX)
-        thetaDeg = math.degrees(thetaRad)
-        #set the direction
-        print(thetaDeg)
-        self.setDirection(thetaDeg)
-
-    def setPos(self, xIn=0, yIn=0):
-        #TODO Set the position of the ball to xIn and yIn
-        pass
-        
-    def distFromPoint(self, xIn, yIn):
-        #https://www.khanacademy.org/math/geometry/hs-geo-analytic-geometry/hs-geo-distance-and-midpoints/v/distance-formula#:~:text=Learn%20how%20to%20find%20the,distance%20between%20any%20two%20points.
-        #TODO: Given an x and y input return the distance the ball is from this point
-        pass
-
-    
+  
     
 def main():
     """ Set up the game and run the main game loop """
@@ -63,35 +13,50 @@ def main():
     # Create surface of (width, height), and its window.
     mainSurface = pygame.display.set_mode((surfaceSize, surfaceSize))
 
-    # Create the ball object using it's position, size and color
-    redBall = Ball([50,100], 30, (255, 0, 0))        # A color is a mix of (Red, Green, Blue)
-    redBall.setSpeed(1)
-    redBall.setDirection(0)
-    
+    # Create variables to control a ball
+    pos = [50,100]
+    size = 30
+    color = (255,0,0)
+    xDirection = 0
+    yDirection = 0
+    speed = 1
+
     while True:
         ev = pygame.event.poll()    # Look for any event
         if ev.type == pygame.QUIT:  # Window close button clicked?
             break                   #   ... leave game loop
-        elif ev.type == pygame.MOUSEBUTTONUP:
-            redBall.setDirectionToPoint(ev.pos)
-            pass
+        elif ev.type == pygame.MOUSEBUTTONUP:          
+            #Find the angle to the point clicked - stored in ev.pos
+            clickedPos = ev.pos
+            #Find change in x and y
+            deltaX = clickedPos[0] - pos[0]
+            deltaY = pos[1] - clickedPos[1]
+            #Calculate the angle
+            thetaRad = math.atan2(deltaY,deltaX)
+            #Convert to degress (as most 11's don't know what a Radian is yet)
+            thetaDeg = math.degrees(thetaRad)
+            print(f'Angle: {thetaDeg} in degrees') 
+            
+            #set the direction
+            xDirection = math.cos(thetaRad)
+            yDirection = -math.sin(thetaRad)
+            
+ 
 
-        # Update your game objects and data structures here...
-
-
-        # We draw everything from scratch on each frame.
-        # So first fill everything with the background color
+        #Fill everything with the background color
         mainSurface.fill((0, 200, 255))
 
         #Move the circle
-        redBall.update()
-        # Draw the circle on the surface
-        redBall.draw(mainSurface)
+        pos[0] += speed * xDirection
+        pos[1] += speed * yDirection
         
+        # Draw the circle on the surface
+        pygame.draw.circle(mainSurface, color, pos, size)
+
         # Now the surface is ready, tell pygame to display it!
         pygame.display.flip()
         
-        clock.tick(60) #Force frame rate to be slower
+        clock.tick(60) #Force frame rate to 60FPS
 
     pygame.quit()     # Once we leave the loop, close the window.
 
