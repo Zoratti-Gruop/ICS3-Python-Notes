@@ -39,6 +39,25 @@ class Ball():
         pass
 
  #   def bounce(self):
+   
+class Character():
+    
+    def __init__(self, imgIn, posIn):
+        self.image = imgIn
+        self.pos = posIn
+
+    def update(self):
+        return
+
+    def draw(self, target_surface):
+        return
+
+    def handle_click(self):
+        return
+
+    def contains_point(self, pt):
+        # Use code from QueenSprite here
+        return
     
     
 def main():
@@ -50,9 +69,6 @@ def main():
 
     # Create surface of (width, height), and its window.
     mainSurface = pygame.display.set_mode((surfaceSize, surfaceSize))
-    
-    #EXAMPLE CODE - Set up a repeating event
-    pygame.time.set_timer(pygame.USEREVENT, 1000)
 
     # Create the ball object using it's position, size and color
     circle = Ball([50,100], 30, (255, 0, 0))        # A color is a mix of (Red, Green, Blue)
@@ -65,19 +81,12 @@ def main():
         ev = pygame.event.poll()    # Look for any event
         if ev.type == pygame.QUIT:  # Window close button clicked?
             break                   #   ... leave game loop
-        
-        #EXAMPLE CODE - Check for the repeated event
-        if ev.type == pygame.USEREVENT:  # Window close button clicked?
-            circles.append(Ball([0,random.randrange(surfaceSize)], 30, (0, 0, 0)) )
-            #continue
-            
-            
+
         # Update your game objects and data structures here...
+        pygame.time.wait(1000)
+        circles.append(Ball([random.randrange(surfaceSize),random.randrange(surfaceSize)], 30, (0, 0, 0)) )
 
-
-        #EXAMPLE CODE - Increment the frame counter for every game loop
-      
-
+        
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color
         mainSurface.fill((0, 200, 255))
