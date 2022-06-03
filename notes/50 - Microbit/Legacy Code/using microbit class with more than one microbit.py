@@ -31,7 +31,9 @@ def loadSingleMicrobit():
         print('Error, Problem Loading Microbit.  Exiting Program')
         return
          
-    #return mb#TEMP FOR DEBUGGING
+    #return mb
+    
+    #TEMP FOR DEBUGGING
     while True:
         
         line = mb.nonBlockingReadRecentLine()
@@ -82,5 +84,4 @@ def loadMicrobits():
     for mb in mbList:
         mb.closeConnection()
     
-
-loadMicrobits()
+loadSingleMicrobit()
