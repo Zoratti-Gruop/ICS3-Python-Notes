@@ -8,11 +8,12 @@ Microbit Micropython API is here: https://microbit-micropython.readthedocs.io/en
 
 from microbit import *
 import audio
+import speech
 
 print("Hello!")
-print("Mirobit program is starting now.")
+print("Microbit program is starting now.")
 
-counter = 1 # initialise the counter
+counter = 0 # initialise the counter
 
 while True:
     if button_a.was_pressed(): # get the next multiple of the thirteen
@@ -25,6 +26,7 @@ while True:
     if button_b.was_pressed(): # Say Hello
         display.show(Image.HAPPY)
         audio.play(Sound.HAPPY)
+#         speech.say("I am a little robot",  speed=92, pitch=60, throat=190, mouth=190)
         display.clear()
         
     sleep(10) # a 10 millisecond delay
