@@ -22,23 +22,9 @@
 from Microbit import *
 
 
-def openSingleMicrobit():
-    '''Load a single microbit connection'''
-    #Create microbit instance
-    mb = Microbit()
-    
-    #Check to make sure it's working
-    if not mb.isReady():
-        print('Error, Problem Loading Microbit.  Exiting Program')
-        return
-         
-    return mb
+mb = Microbit()
 
-
-    
-mb = openSingleMicrobit()
-
-while True:
+while mb.isReady():
     
     line = mb.nonBlockingReadLine()
     if line != None:
@@ -46,4 +32,8 @@ while True:
         
     
     #time.sleep(1)
-mb.closeConnection()
+try:
+    mb.closeConnection()
+except AttributeError as e:
+    print(f'Error - Connection could not be closed.  ({e})')
+    

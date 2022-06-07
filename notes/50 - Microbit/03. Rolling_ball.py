@@ -25,8 +25,7 @@ while True:
 #-----------------------------------------------------------------------------
 
 import pygame
-import serial
-import serial.tools.list_ports as list_ports
+from Microbit import *
 
 
 class Ball():
@@ -44,8 +43,24 @@ class Ball():
         pygame.draw.circle(surfaceIn, self.color, self.pos, self.size)
         
     def update(self):
-        self.move(self.speed[0],self.speed[1])
         
+        
+        if self.pos[0] < 0:
+            self.pos[0] = 0
+            self.speed[0] = 0
+        elif self.pos[0] > 480:
+            self.pos[0] = 480
+            self.speed[0] = 0
+            
+        elif self.pos[1] < 0:
+            self.pos[1] = 0
+            self.speed[1] = 0
+        elif self.pos[1] > 480:
+            self.pos[1] = 480
+            self.speed[1] = 0
+        else:
+            self.move(self.speed[0],self.speed[1])
+
     def move(self, xIn=0, yIn=0):
         self.pos[0] += xIn
         self.pos[1] += yIn
@@ -53,48 +68,6 @@ class Ball():
     def accelerate(self, xIn=0, yIn=0):
         self.speed[0] += xIn
         self.speed[1] += yIn
-
-def findMicrobitComPort(pid=516, vid=3368, baud=115200):
-    '''
-    This function finds a device connected to usb by it's PID and VID and returns a serial connection
-
-    Parameters
-    ----------
-    pid - Product id of device to search for
-    vid - Vendor id of device to search for
-    baud - Baud rate to open the serial connection at
-
-    Returns
-    -------
-    Serial - If a device is found a serial connection for the device is configured and returned
-
-    '''
-    #Required information about the microbit so it can be found
-    #PID_MICROBIT = 516
-    #VID_MICROBIT = 3368
-    TIMEOUT = 0.1
-    
-    #Create the serial object
-    serPort = serial.Serial(timeout=TIMEOUT)
-    serPort.baudrate = baud
-    
-    #Search for device on open ports and return connection if found
-    ports = list(list_ports.comports())
-    print('scanning ports')
-    for p in ports:
-        print('port: {}'.format(p))
-        try:
-            print('pid: {} vid: {}'.format(p.pid, p.vid))
-        except AttributeError:
-            continue
-        if (p.pid == pid) and (p.vid == vid):
-            print('found target device pid: {} vid: {} port: {}'.format(
-                p.pid, p.vid, p.device))
-            serPort.port = str(p.device)
-            return serPort
-    
-    #If nothing found then return None
-    return None
 
 
 def normalizeGyroValue(gyroString, startingY, displayRect):
@@ -164,21 +137,18 @@ def main():
             programState = "set up microbit"
             
         elif programState == "set up microbit":
-            print('looking for microbit')
-            microbit = findMicrobitComPort()
-            if not microbit:
-                print('microbit not found')
-                #TODO: Display a message on pygame display asking the user to plug in microbit
-                continue
             
-            print('opening and monitoring microbit port')
-            microbit.open()
-            
-            programState = "display"
+            mb = Microbit()
+
+            if not mb.isReady():
+                print('Error opening Microbit - Trying again in 5 seconds')    
+                time.sleep(5)
+            else:
+                programState = "display"
             
         elif programState == "display":
             #Grab the data from the microbit
-            line = microbit.readline().decode('utf-8')
+            line = mb.nonBlockingReadLine()
             if line:  # If it isn't a blank line
                 #Update your data
                 #print(line)
@@ -193,15 +163,14 @@ def main():
                 normalizeGyroValue(gyroX, startingY, gyroXRectBase)
                 normalizeGyroValue(gyroY, startingY, gyroYRectBase)
                 normalizeGyroValue(gyroZ, startingY, gyroZRectBase)
-                
-                print(gyroXRectBase)
+                #print(gyroXRectBase)
                 
                 
             mainSurface.fill((0, 200, 255))
             
             pygame.draw.rect(mainSurface, (255,0,0), gyroXRectBase)
             pygame.draw.rect(mainSurface, (0,255,0), gyroYRectBase)
-            pygame.draw.rect(mainSurface, (0,0,255), gyroZRectBase)
+#             pygame.draw.rect(mainSurface, (0,0,255), gyroZRectBase)
             
             
             ball.update()
