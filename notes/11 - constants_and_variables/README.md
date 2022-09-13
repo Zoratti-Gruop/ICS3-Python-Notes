@@ -12,12 +12,11 @@ print('''Hello World!''')
 
 ### Printing numerical values
 
-When printing out numerical values, you will want to wrap the text with a ```str()``` function.  The reason being that you might want to include strings in your  output along with the number(s) so that it is easier to understand what the number is printing out for (as in example 2 above)
+When printing out numerical values mixed with text, you will want to use an f-string.  This let's python know that the value inside the ```{ }``` should be printed as a string.
 
 ```python
-print(str(5 + 10)) # example 1
-print('The value of x is: ' + str(5.5))  # example 2
-print(f'The result of 5*6 is: {5*6}') # example 3 (The best way)
+print(5 + 10) # example 1
+print(f'The result of 5*6 is: {5*6}') # example 2
 
 ```
 
@@ -34,19 +33,7 @@ Variables can be of different types such as:
 * Boolean values - True or False!
 * and more!
 
-#### Method 1 - Using str()
-```python
-integerOne = 15
-integerTwo = 22
-print(str(integerOne - integerTwo))
-
-greeting = 'Hello'
-print(greeting)
-```
-
-When printing out variables, you will want to wrap the text with a ```str()``` function if you know that the values might be numeric.  If you know they are strings you can print out the information directly to the ```print()``` function.
-
-#### Method 2 - Using f Strings
+#### Printing Variables
 ```python
 integerOne = 15
 integerTwo = 22
@@ -121,5 +108,7 @@ The above program prompts the user with ```Enter your name: ``` and waits for th
 
 Note: Don't forget that if you want a numeric value from a user input you need to convert it to the correct type.
 
+<!--
 ## Practice
 Make a simple [madlibs](https://www.madtakes.com/) program.
+-->
