@@ -17,6 +17,8 @@ When printing out numerical values, you will want to wrap the text with a ```str
 ```python
 print(str(5 + 10)) # example 1
 print('The value of x is: ' + str(5.5))  # example 2
+print(f'The result of 5*6 is: {5*6}') # example 3 (The best way)
+
 ```
 
 
