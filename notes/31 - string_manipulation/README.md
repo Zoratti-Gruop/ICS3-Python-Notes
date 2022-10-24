@@ -32,3 +32,13 @@ See the ```stringManipulation.py``` file above for some example uses of escape s
 
 #### String Constants
 There are many useful string constants that can be used to look for specific type of characters in a string.  See the [string library](https://docs.python.org/3.7/library/string.html#string-constants) for a list of all the string constants.
+
+#### String Slices
+Using slicing you can return a range of characters.  Python slice notation uses ```[```, ```]``` and ```:``` to slice apart strings
+
+Get the characters from posision 2 to position 7.  Note that position 7
+```
+words = 'Hello World!'
+print(words[2:7])
+```
+https://www.w3schools.com/python/python_strings_slicing.asp
