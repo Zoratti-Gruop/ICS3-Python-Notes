@@ -32,6 +32,7 @@ while mb.isReady():
         
     
     #time.sleep(1)
+        
 try:
     mb.closeConnection()
 except AttributeError as e:

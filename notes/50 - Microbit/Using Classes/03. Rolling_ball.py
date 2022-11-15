@@ -1,5 +1,5 @@
 #-----------------------------------------------------------------------------
-# Name:        Dictionaries (dictionaries_ex1.py)
+# Name:        Rolling Ball (dictionaries_ex1.py)
 # Purpose:     This program detects reads the microbit data and displays the gyro results
 #
 # Author:      Mr. Brooks-Prenger
@@ -152,10 +152,10 @@ def main():
             if line:  # If it isn't a blank line
                 #Update your data
                 #print(line)
-                data = line.split()
+                data = line.split(' ')
                 #print(data)
                 *label, gyroX, gyroY, gyroZ = data
-                #print(f' ({gyroX}, {gyroY}, {gyroZ})')
+                #print(f' ({label} {gyroX}, {gyroY}, {gyroZ})')
                 
                 ball.accelerate(-int(gyroX)/1050,0)
                 ball.accelerate(0,-int(gyroY)/1050)
