@@ -15,15 +15,17 @@ def main():
     mainSurface = pygame.display.set_mode((surfaceSize, surfaceSize))
     
     spriteSheet = pygame.image.load("images/dungeon/0x72_DungeonTilesetII_v1.3.png")
+    spriteSheet = pygame.transform.scale2x(spriteSheet)
     
     wizardPos = [0,50]
     lizardPos = [0,150]
     
-    #These are needed for the image animation
-    lizardRect = [128,236,16,28]
-    lizardPatchNumber = 0         #Start at the initial patch
-    lizardNumPatches = 4          #Only use 4 patches
-    lizardFrameCount = 0          #Start at intial frame
+    #These are needed for the image animation这些是图像动画所需要的
+    lizardRect = [128,236,16,28]  #Old Values
+    lizardRect = [256,472,32,56]  #New values are doubled since I doubled the scale新的数值是双倍的，因为我把比例增加了一倍。
+    lizardPatchNumber = 0         #Start at the initial patch从最初的补丁开始
+    lizardNumPatches = 4          #Only use 4 patches只使用4个补丁
+    lizardFrameCount = 0          #Start at intial frame从第一帧开始
     
     lizardFrameRate = 10;
     
@@ -39,25 +41,25 @@ def main():
         # So first fill everything with the background color
         mainSurface.fill((0, 200, 255))
 
-# 
+
 #         #Move the Dino
 #         wizardPos[0] += 0.5   #update the x for the lizard
 #         lizardPos[0] += 0.5   #update the x for the wizard
-        
-        if (frameCount % lizardFrameRate == 0):    #Only change the animation frame once every {lizardFrameRate} frames
+#         
+        if (frameCount % lizardFrameRate == 0):    #Only change the animation frame once every {lizardFrameRate} frames 每隔{lizardFrameRate}帧只改变一次动画帧
             if (lizardPatchNumber < lizardNumPatches-1) :
                 lizardPatchNumber += 1
-                lizardRect[0] += lizardRect[2]  #Shift the "display window" to the right along the sprite sheet by the width of the image
+                lizardRect[0] += lizardRect[2]  #Shift the "display window" to the right along the sprite sheet by the width of the image 将 "显示窗口 "沿着精灵片向右移动，宽度为图像的宽度。
             else:
-                lizardPatchNumber = 0           #Reset back to first patch
-                lizardRect[0] -= lizardRect[2]*(lizardNumPatches-1)  #Reset the rect position of the rect back too
+                lizardPatchNumber = 0           #Reset back to first patch 重置到第一个补丁
+                lizardRect[0] -= lizardRect[2]*(lizardNumPatches-1)  #Reset the rect position of the rect back too 将矩形的位置也重新设置为矩形的位置
                 #self.imageRect = copy.copy(self.origImageRect)
             
             print(f"Patch Number: {lizardPatchNumber}   Image Rect: {lizardRect}  ")
             
         #Draw the image of the sprite using the rect
-        mainSurface.blit(spriteSheet, wizardPos, [130,165,16,28])  #Positions found using msPaint
-        mainSurface.blit(spriteSheet, lizardPos, lizardRect)  #Positions found using msPaint
+        mainSurface.blit(spriteSheet, wizardPos, [130,165,16,28])  #Positions found using msPaint使用msPaint找到的位置
+        mainSurface.blit(spriteSheet, lizardPos, lizardRect)  #Positions found using msPaint使用msPaint找到的位置
         
         # Now the surface is ready, tell pygame to display it!
         pygame.display.flip()
