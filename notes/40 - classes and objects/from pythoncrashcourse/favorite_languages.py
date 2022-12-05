@@ -1,4 +1,4 @@
-from collections import OrderedDict
+import OrderedDict
 
 favorite_languages = OrderedDict()
 

@@ -15,16 +15,14 @@ def main():
     mainSurface = pygame.display.set_mode((surfaceSize, surfaceSize))
     
     spriteSheet = pygame.image.load("images/dungeon/0x72_DungeonTilesetII_v1.3.png")
-    #spriteSheet = pygame.transform.scale2x(spriteSheet)
-    scale = 2;
-    spriteSheet = pygame.transform.smoothscale(spriteSheet, (scale*spriteSheet.get_width(),scale*spriteSheet.get_height()))
+    spriteSheet = pygame.transform.scale2x(spriteSheet)
     
     wizardPos = [0,50]
     lizardPos = [0,150]
     
     #These are needed for the image animation
-    lizardRect = [128*scale,236*scale,16*scale,28*scale]  #Old Values
-    #lizardRect = [256,472,32,56]  #New values are doubled since I doubled the scale
+    lizardRect = [128,236,16,28]  #Old Values
+    lizardRect = [256,472,32,56]  #New values are doubled since I doubled the scale
     lizardPatchNumber = 0         #Start at the initial patch
     lizardNumPatches = 4          #Only use 4 patches
     lizardFrameCount = 0          #Start at intial frame
@@ -44,17 +42,17 @@ def main():
         mainSurface.fill((0, 200, 255))
 
 
-        #Move the Dino
-#         wizardPos[0] += 0.5   #update the x for the lizard
-#         lizardPos[0] += 0.5   #update the x for the wizard
+#         #Move the Dino
+        wizardPos[0] += 0.5   #update the x for the lizard
+        lizardPos[0] += 0.5   #update the x for the wizard
 #         
-        if (frameCount % lizardFrameRate == 0):    #Only change the animation frame once every {lizardFrameRate} frames
+        if (frameCount % lizardFrameRate == 0):    #Only change the animation frame once every {lizardFrameRate} frames 每隔{lizardFrameRate}帧才改变一次动画帧。
             if (lizardPatchNumber < lizardNumPatches-1) :
                 lizardPatchNumber += 1
-                lizardRect[0] += lizardRect[2]  #Shift the "display window" to the right along the sprite sheet by the width of the image
+                lizardRect[0] += lizardRect[2]  #Shift the "display window" to the right along the sprite sheet by the width of the image 将 "显示窗口 "沿着精灵表向右移动，宽度为图像的宽度。
             else:
-                lizardPatchNumber = 0           #Reset back to first patch
-                lizardRect[0] -= lizardRect[2]*(lizardNumPatches-1)  #Reset the rect position of the rect back too
+                lizardPatchNumber = 0           #Reset back to first patch重置到第一个补丁
+                lizardRect[0] -= lizardRect[2]*(lizardNumPatches-1)  #Reset the rect position of the rect back too将矩形的位置也重新设置为矩形的位置
                 #self.imageRect = copy.copy(self.origImageRect)
             
             print(f"Patch Number: {lizardPatchNumber}   Image Rect: {lizardRect}  ")
