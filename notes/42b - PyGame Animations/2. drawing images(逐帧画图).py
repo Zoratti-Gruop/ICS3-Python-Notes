@@ -30,15 +30,15 @@ def main():
 
 
         #Move the Dino移动恐龙
-#         wizardPos[0] += 0.5   #update the x for the lizard更新蜥蜴的X
-#         lizardPos[0] += 0.5   #update the x for the wizard更新魔法师的X值
+        wizardPos[0] += 0.5   #update the x for the lizard更新蜥蜴的X
+        lizardPos[0] += 0.5   #update the x for the wizard更新魔法师的X值
 #         
         #Draw the whole sheet绘制整张纸
         #mainSurface.blit(spriteSheet, lizardPos)
         
         #Kinda fun to have EVERY Image, but let's just get the patches we need拥有每张图片都挺有趣的，但我们还是要得到我们需要的补丁。
         mainSurface.blit(spriteSheet, wizardPos, [130,165,16,28])  #Positions found using msPaint使用msPaint找到的位置
-        mainSurface.blit(spriteSheet, lizardPos, [127,236,16,28])  #Positions found using msPaint
+        mainSurface.blit(spriteSheet, lizardPos, [127,330,16,28])  #Positions found using msPaint((左右，上下,长，宽))
         
         
         # Now the surface is ready, tell pygame to display it!现在，表面已经准备好了，告诉pygame来显示它。
