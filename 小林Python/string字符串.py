@@ -34,7 +34,8 @@ phrase6 = "Hello Mr.apple"
         #  0123456789     #0为第一位字符，倒数第一位为-1
 print(phrase6[1]) #[]内数字代表字符串内字符的位置。这里将打印e
 
-
+#下面为带冒号的用法，与list中的道理相同，详细请见list文件
+print(phrase6[0:5]) #从第一位取到第六位前(0-5),这里取得Hello
 
 
 # 使用index指数
@@ -51,7 +52,26 @@ phrase7 = "Hello Mr.apple"
 print(phrase7.replace("l", "L")) #"l"为被替换值，“L”为替换值。(在字符串中找到小写l后，它将被替换为大写L)。
 #replace将会替换字符串中所用的 被指定的 被替换值 ，如果
 
+# 将字串转换为列表：
 
+string1="Python is great"
+
+print("String converted to list :",string1.split())
+
+string2 = "Ask.aQustion"
+print(list(string2))
+
+print(list(map(list,string1.split())))
+
+string3 = "abc,efg,hij"
+print(string3.split(','))
+"""
+以上代码的输出结果
+String converted to list : ['Python', 'is', 'great']
+['A', 's', 'k', '.', 'a', 'Q', 'u', 's', 't', 'i', 'o', 'n']
+[['P', 'y', 't', 'h', 'o', 'n'], ['i', 's'], ['g', 'r', 'e', 'a', 't']]
+['abc', 'efg', 'hij']
+"""
 
 
 
